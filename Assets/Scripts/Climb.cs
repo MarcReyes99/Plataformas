@@ -20,7 +20,7 @@ public class Climb : MonoBehaviour
         else if(!Stairs.activeSelf)
         {
             isKeyPressed = false;
-            rb.gravityScale = 1;
+            rb.gravityScale = 3;
         }
 
         if (isKeyPressed)

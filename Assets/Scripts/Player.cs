@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     [Header("Movimiento")]
     public float speed;
+    public float horizontalMove;
 
     [Header("Deteccion de suelo")]
     [Min(0f)]
@@ -17,11 +18,27 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public float jumpForce;
     public GameObject PlatMovil;
+    public GameObject PlatMovilVertical;
     public bool hasKey = false;
     public bool isDead = false;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+
     void FixedUpdate()
     {
-        transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, 0, 0);
+        horizontalMove = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
+        transform.position += new Vector3(horizontalMove, 0, 0);
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        if (horizontalMove < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (horizontalMove > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
 
         grounded = false;
         foreach (Vector2 p in points)
@@ -33,9 +50,13 @@ public class Player : MonoBehaviour
             {
                 grounded = true;
 
-                if(hit.collider.gameObject.CompareTag("PlatMovil"))
+                if (hit.collider.gameObject.CompareTag("PlatMovil"))
                 {
                     transform.SetParent(PlatMovil.transform, true);
+                }
+                if (hit.collider.gameObject.CompareTag("PlatMovilVertical"))
+                {
+                    transform.SetParent(PlatMovilVertical.transform, true);
                 }
             }
         }
@@ -47,7 +68,7 @@ public class Player : MonoBehaviour
 
         if (grounded && Input.GetKey(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+           rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 }

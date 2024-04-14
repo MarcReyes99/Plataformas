@@ -7,6 +7,8 @@ TagManager:
   - PlatMovil
   - Box
   - Stairs
+  - Box2
+  - Water
   layers:
   - Default
   - TransparentFX

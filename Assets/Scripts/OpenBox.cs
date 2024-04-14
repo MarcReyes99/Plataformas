@@ -5,6 +5,9 @@ using UnityEngine;
 public class OpenBox : MonoBehaviour
 {
     public GameObject PressE;
+    public GameObject InvisiblePlatform;
+    public GameObject Key;
+    public GameObject DoesntHaveKey;
     void Update()
     {
         Player p = FindObjectOfType<Player>();
@@ -13,16 +16,20 @@ public class OpenBox : MonoBehaviour
             if (gameObject.CompareTag("Box"))
             {
                 p.hasKey = true;
+                Key.SetActive(true);
             }
-            else if (gameObject.CompareTag("Box2"))
+        }
+        if (Input.GetKey(KeyCode.E) && PressE.activeSelf)
+        {
+            if (gameObject.CompareTag("Box2"))
             {
                 if (p.hasKey)
                 {
-
+                    InvisiblePlatform.SetActive(true);
                 }
                 else if (!p.hasKey)
                 {
-                     
+                    DoesntHaveKey.SetActive(true);
                 }
             }
         }
