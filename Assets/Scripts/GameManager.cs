@@ -40,19 +40,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Gameplay");
         Time.timeScale = 1f;
     }
-    public void Victory()
-    {
-        victory.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0f;
-    }
-
-    public void Defeat()
-    {
-        defeat.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0f;
-    }
     public void Options()
     {
         optionsMenuUI.SetActive(true);
@@ -88,11 +75,6 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         pauseMenuUI.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void Retry()
-    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
