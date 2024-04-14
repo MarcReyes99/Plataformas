@@ -61,6 +61,11 @@ public class Collisions : MonoBehaviour
             ui.life--;
             p.isDead = true;
         }
+        if (collision.gameObject.CompareTag("Banana"))
+        {
+            p.hasBanana = true;
+            Destroy(collision.gameObject);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

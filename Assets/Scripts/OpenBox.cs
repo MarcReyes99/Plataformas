@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class OpenBox : MonoBehaviour
@@ -17,6 +18,7 @@ public class OpenBox : MonoBehaviour
             {
                 p.hasKey = true;
                 Key.SetActive(true);
+                StartCoroutine(HideMessage(2f));
             }
         }
         if (Input.GetKey(KeyCode.E) && PressE.activeSelf)
@@ -30,8 +32,17 @@ public class OpenBox : MonoBehaviour
                 else if (!p.hasKey)
                 {
                     DoesntHaveKey.SetActive(true);
+                    StartCoroutine(HideMessage(2f));
                 }
             }
         }
+    }
+
+    public IEnumerator HideMessage(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        Key.SetActive(false);
+        DoesntHaveKey.SetActive(false);
     }
 }

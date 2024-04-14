@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject PlatMovil;
     public GameObject PlatMovilVertical;
     public bool hasKey = false;
+    public bool hasBanana = false;
     public bool isDead = false;
     public bool Respawn1 = true;
     public bool Respawn2 = false;
