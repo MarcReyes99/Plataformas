@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    public int life;
-    public TMP_Text lifes;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public int life = 3;
+    //public TMP_Text lifes;
+    //public GameObject Victory;
+    //public GameObject Defeat;
     void Update()
     {
-        lifes.text = life.ToString();
+        Player p = FindObjectOfType<Player>();
+        //lifes.text = life.ToString();
 
-
+        if (life <= 0)
+        {
+            //Defeat.SetActive(true);
+            life = 3;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class Player : MonoBehaviour
     public GameObject PlatMovilVertical;
     public bool hasKey = false;
     public bool isDead = false;
+    public bool Respawn1 = true;
+    public bool Respawn2 = false;
+    public bool Respawn3 = false;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
@@ -69,6 +73,25 @@ public class Player : MonoBehaviour
         if (grounded && Input.GetKey(KeyCode.Space))
         {
            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        if (isDead)
+        {
+            if (Respawn1)
+            {
+                transform.position = new Vector3(-7, -2.5f, 0);
+                isDead = false;
+            }
+            else if (Respawn2)
+            {
+                transform.position = new Vector3(-1, 17.5f, 0);
+                isDead = false;
+            }
+            else if (Respawn3)
+            {
+                transform.position = new Vector3(3, 66.5f, 0);
+                isDead = false;
+            }
         }
     }
 }

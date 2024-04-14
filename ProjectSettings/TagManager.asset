@@ -9,6 +9,10 @@ TagManager:
   - Stairs
   - Box2
   - Water
+  - Pincho
+  - PlatMovilVertical
+  - Checkpoint
+  - Checkpoint2
   layers:
   - Default
   - TransparentFX
