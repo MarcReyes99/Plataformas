@@ -7,6 +7,10 @@ public class Collisions : MonoBehaviour
     public GameObject PressE;
     public GameObject PressE2;
     public GameObject Stairs;
+    public GameObject MessageCP;
+    public bool alreadyReached = false;
+    public GameObject MessageCP2;
+    public bool alreadyReached2 = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,11 +32,24 @@ public class Collisions : MonoBehaviour
         {
             p.Respawn1 = false;
             p.Respawn2 = true;
+            if (!alreadyReached)
+            {
+                MessageCP.SetActive(true);
+                StartCoroutine(HideMessage(2f));
+            }
+            alreadyReached = true;
+
         }
         if (collision.gameObject.CompareTag("Checkpoint2"))
         {
             p.Respawn2 = false;
             p.Respawn3 = true;
+            if (!alreadyReached2)
+            {
+                MessageCP2.SetActive(true);
+                StartCoroutine(HideMessage(2f));
+            }
+            alreadyReached2 = true;
         }
         if (collision.gameObject.CompareTag("Water"))
         {
@@ -59,5 +76,13 @@ public class Collisions : MonoBehaviour
         {
             Stairs.SetActive(false);
         }
+    }
+
+    public IEnumerator HideMessage(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        MessageCP.SetActive(false);
+        MessageCP2.SetActive(false);
     }
 }

@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
-    public GameObject shopMenuUI;
     public GameObject defeat;
     public GameObject victory;
     public bool isPaused = false;
