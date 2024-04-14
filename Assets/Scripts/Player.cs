@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public float jumpForce;
     public GameObject PlatMovil;
+    public bool hasKey = false;
+    public bool isDead = false;
     void FixedUpdate()
     {
         transform.position += new Vector3(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, 0, 0);
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour
             transform.SetParent(null, true);
         }
 
-        if (grounded && Input.GetButtonDown("Jump"))
+        if (grounded && Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
